@@ -7,4 +7,5 @@ export default {
     extend: {},
   },
   plugins: [daisyui],
+  parser: "@typescript-eslint/parser",
 };

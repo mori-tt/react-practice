@@ -1,25 +1,29 @@
-import { useState } from "react";
 import "./App.css";
-import { ViteIcon } from "./ViteIcon.jsx";
-import { ReactIcon } from "./ReactIcon.jsx";
-import Greeting from "./Greeting.jsx";
-import Counter from "./Counter.jsx";
-import ObjectCounter from "./ObjectCounter.jsx";
+import { Link, Switch, Route } from "wouter";
+import Index from "./pages/Index.jsx";
+import Todos from "./pages/Todos.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
-      <div>
-        <ViteIcon />
-        <ReactIcon />
-      </div>
-      <h1>Vite + React</h1>
-      <Greeting names={["React", "Vite"]} />
-      <Counter />
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <ObjectCounter />
+      <QueryClientProvider client={queryClient}>
+        <div className="flex justify-around">
+          <Link className="btn btn-ghost text-xl" href="/">
+            Home
+          </Link>
+          <Link className="btn btn-ghost text-xl" href="/todos">
+            Todos
+          </Link>
+        </div>
+        <Switch>
+          <Route path="/" component={Index} />
+          <Route path="/todos" component={Todos} />
+          {/* <Route component={NotFound} /> */}
+        </Switch>
+      </QueryClientProvider>
     </>
   );
 }

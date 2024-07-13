@@ -1,15 +1,16 @@
-import { useMemo, useState, useCallback, useEffect, useRef } from "react";
+import { useMemo, useCallback, useEffect, useRef } from "react";
+import { useAtom } from "jotai";
+import { countAtom, randomAtom } from "../state/counterAtom";
 import Note from "./Note";
 
 function Counter({ children }) {
-  const [count, setCount] = useState(0);
-  const [random, setRandom] = useState(0);
+  const [count, setCount] = useAtom(countAtom);
+  const [random, setRandom] = useAtom(randomAtom);
 
   const now = useMemo(() => {
     return Date.now();
   }, []);
 
-  // countが偶数か奇数かを判定する処理をメモ化
   const isEven = useMemo(() => {
     console.log("isEven計算中...");
     return count % 2 === 0;

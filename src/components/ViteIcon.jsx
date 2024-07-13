@@ -1,6 +1,6 @@
 import viteLogo from "/vite.svg";
 import styles from "./ViteIcon.module.css";
-import "./index.css";
+import "../index.css";
 
 export const ViteIcon = () => {
   return (
